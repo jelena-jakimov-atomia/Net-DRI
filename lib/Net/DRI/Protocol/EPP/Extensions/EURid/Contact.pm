@@ -94,6 +94,8 @@ sub create
  push @n,['contact-ext:type',$contact->type()];
  push @n,['contact-ext:vat',$contact->vat()] if $contact->vat();
  push @n,['contact-ext:lang',$contact->lang()];
+ push @n,['contact-ext:naturalPerson',$contact->natural_person()];
+ push @n,['contact-ext:countryOfCitizenship',$contact->country_of_citizenship()] if defined($contact->country_of_citizenship); # optional element
 
  my $eid=build_command_extension($mes,$epp,'contact-ext:create');
  $mes->command_extension($eid,[@n]);
@@ -110,6 +112,8 @@ sub update
  my @n;
  push @n,['contact-ext:vat',$newc->vat()]   if defined($newc->vat());
  push @n,['contact-ext:lang',$newc->lang()] if defined($newc->lang());
+ push @n,['contact-ext:naturalPerson',$newc->natural_person()] if defined($newc->natural_person());
+ push @n,['contact-ext:countryOfCitizenship',$newc->country_of_citizenship()] if defined($newc->country_of_citizenship());
 
  my $eid=build_command_extension($mes,$epp,'contact-ext:update');
  $mes->command_extension($eid,['contact-ext:chg',@n]);

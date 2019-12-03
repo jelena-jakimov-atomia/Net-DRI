@@ -71,7 +71,7 @@ sub setup
  my ($self,$rp)=@_;
  $self->default_parameters()->{subproductid}=$rp->{default_product} || '_auto_';
  $self->default_parameters()->{whois_info}=0;
- $self->default_parameters()->{breaks_rfc3915}=1;
+ $self->default_parameters()->{breaks_rfc3915}=0;
  $self->factories('contact',sub { return Net::DRI::Data::Contact::JOBS->new(@_); }) if $self->has_module('Net::DRI::Protocol::EPP::Extensions::VeriSign::JobsContact');
  return;
 }
